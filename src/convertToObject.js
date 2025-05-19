@@ -12,7 +12,7 @@ function convertToObject(sourceString) {
   const result = arrayWithNoSpaces.reduce((status, element, index) => {
     const parts = element.split(':').map((part) => part.trim());
 
-    return { ...status, [parts[0]]: parts[1] };
+    return { ...status, [parts[0]]: parts[1], index };
   }, {});
 
   return result;

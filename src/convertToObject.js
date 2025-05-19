@@ -7,15 +7,18 @@
  */
 function convertToObject(sourceString) {
   // write your code here
-  const arrayStrings = sourceString.split(';');
-  const arrayWithNoSpaces = arrayStrings.map((element) => element.trim());
-  const result = arrayWithNoSpaces.reduce((status, element, index) => {
-    const parts = element.split(':').map((part) => part.trim());
+  return sourceString
+    .split(';')
+    .filter((key) => key)
+    .reduce((obj, key) => {
+      const [prop, value] = key.split(':').map((el) => el.trim());
 
-    return { ...status, [parts[0]]: parts[1], index };
-  }, {});
+      if (prop) {
+        obj[prop] = value;
+      }
 
-  return result;
+      return obj;
+    }, {});
 }
 
 module.exports = convertToObject;
